@@ -1,0 +1,13 @@
+language: go
+
+go_import_path: github.com/CardInfoLink/bubble-gum
+
+go:
+  - 1.9
+  - 1.8
+  - 1.7
+  - 1.6
+
+script:
+  - make build
+  - go test -v
