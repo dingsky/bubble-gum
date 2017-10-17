@@ -22,7 +22,7 @@ func AlpHandle(w http.ResponseWriter, r *http.Request) {
 	//log.Debugf("[rcv req]%s", bytes)
 	json.Unmarshal(bytes, &req)
 	respBytes := alpServive(&req)
-	time.Sleep(300 * time.Millisecond)
+	time.Sleep(30000 * time.Millisecond)
 	log.Debugf("[send resp]%+s", respBytes)
 	w.Write(respBytes)
 	return
