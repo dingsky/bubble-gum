@@ -36,7 +36,7 @@ var alpQueryResp_Process = alpQueryResp{
 }
 // json: 	alipay_trade_pay_response
 func alpServive(req *model.AlpComonRequest) []byte {
-	log.Debugf("[rcv rep]%+v", req)
+	log.Debugf("[rcv req]%+v", req)
 
 	switch req.Method {
 	case "alipay.trade.query":
