@@ -18,6 +18,7 @@ func startMock() {
 	http.HandleFunc("/mock/alp", channelMock.AlpHandle)
 	http.HandleFunc("/mock/wxp", channelMock.WxpHandle)
 	http.HandleFunc("/mock/mbp", channelMock.MbpHandle)
+	http.HandleFunc("/mock/fyp", channelMock.FypHandle)
 	if err := http.ListenAndServe(":9900", nil); err != nil {
 		fmt.Printf("%s\n", err)
 	}
