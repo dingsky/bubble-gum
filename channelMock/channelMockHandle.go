@@ -61,3 +61,28 @@ func MbpHandle(w http.ResponseWriter, r *http.Request) {
 	w.Write(respBytes)
 	return
 }
+
+
+func FypHandle(w http.ResponseWriter, r *http.Request) {
+	reqData, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		w.Write([]byte("fuiou mock error"))
+		return
+	}
+	defer r.Body.Close()
+	log.Debugf("[rcv req]%s", string(reqData))
+	req := &model.FypPayReq{
+	}
+	err = xml.Unmarshal(reqData, req)
+	if err != nil {
+		w.Write([]byte("fuiou Unmarshal mock error"))
+		return
+	}
+	respBytes := fypServive(req)
+	if MbpSleep > 0 {
+		time.Sleep(time.Duration(MbpSleep) * time.Millisecond)
+	}
+	log.Debugf("[send resp]%+s", respBytes)
+	w.Write(respBytes)
+	return
+}
