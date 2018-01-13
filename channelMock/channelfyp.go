@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func mbpServive(req *model.FypPayReq) []byte {
+func fypServive(req *model.FypPayReq) []byte {
 	log.Debugf("[rcv req]%+v", req)
 	return fypPayService(req)
 }
@@ -22,11 +22,11 @@ func fypPayService(req *model.FypPayReq) []byte {
 			MchntCD:req.CommonParams.MchntCD,
 			TermID:req.CommonParams.TermID,
 			RandomStr:req.CommonParams.RandomStr,
-		}
+		},
 
 		OrderType:req.OrderType,
 		TotalAmount:req.OrderAmt,
-		AddnInf：req.AddnInf,
+		AddnInf:req.AddnInf,
 		ReservedMchntOrderNo:req.MchntOrderNo,
 	}
 	bytes, _ := xml.Marshal(fypResp)
