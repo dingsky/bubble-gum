@@ -1,11 +1,9 @@
 package channelMock
 
 import (
-	"fmt"
 	"github.com/CardInfoLink/bubble-gum/channelMock/model"
 	"encoding/xml"
 	"github.com/CardInfoLink/log"
-	"time"
 )
 
 func fypServive(req *model.FypPayReq) []byte {
