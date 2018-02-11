@@ -17,12 +17,23 @@ type alpPreCreateResp struct {
 type alpQueryResp struct {
 	Resp model.AlpCommonResponse `json:"alipay_trade_query_response"`
 }
-
+//by sunny
+//定义支付宝退款应答结构体
+type alpRefundResp struct {
+	Resp model.AlpCommonResponse `json:"alipay_trade_refund_response"`
+}
 var alpCommonResp_Success = model.AlpCommonResponse{
 	Code:"10000",
 	Msg:"Success",
 	TradeStatus:"TRADE_SUCCESS",
 }
+//by sunny
+//定义支付宝回服务器异常的应答
+var alpResp_Exception = model.AlpCommonResponse{
+	Code:"20000",
+	Msg:"支付宝服务器异常",
+	TradeStatus:"TRADE_Error",
+}	
 var alpPayResp_Success = alpPayResp{
 	Resp:alpCommonResp_Success,
 }
@@ -33,6 +44,11 @@ var alpPreCreateResp_Process = alpPreCreateResp{
 
 var alpQueryResp_Process = alpQueryResp{
 	Resp:alpCommonResp_Success,
+}
+//by sunny
+//定义支付宝退款异常应答处理
+var alpRefundResp_Process = alpRefundResp{
+	Resp:alpResp_Exception,
 }
 // json: 	alipay_trade_pay_response
 func alpServive(req *model.AlpComonRequest) []byte {
@@ -45,7 +61,9 @@ func alpServive(req *model.AlpComonRequest) []byte {
 		return alpPreCreateService(req)
 	case "alipay.trade.pay":
 		return alpPayService(req)
-
+    //by sunny
+	case "alipay.trade.refund":
+	    return alpRefundService(req)
 	}
 	return nil
 }
@@ -62,5 +80,11 @@ func alpPreCreateService(req *model.AlpComonRequest) []byte {
 
 func alpQueryService(req *model.AlpComonRequest) []byte {
 	bytes, _ := json.Marshal(alpQueryResp_Process)
+	return bytes
+}
+//by sunny
+//增加支付宝退款接口处理
+func alpRefundService(req *model.AlpComonRequest) []byte {
+	bytes, _ := json.Marshal(alpRefundResp_Process)
 	return bytes
 }
