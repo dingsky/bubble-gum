@@ -29,7 +29,7 @@ var alpCommonResp_Success = model.AlpCommonResponse{
 }
 //by sunny
 //定义支付宝回服务器异常的应答
-var alpResp_Exception = model.AlpCommonResponse{
+var alpResp_Exception = model.AlpExceptionResponse{
 	Code:"20000",
 	Msg:"支付宝服务器异常",
 	TradeStatus:"TRADE_Error",
