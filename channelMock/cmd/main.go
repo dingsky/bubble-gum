@@ -16,7 +16,8 @@ func startMock() {
 	flag.Parse()
 
 	http.HandleFunc("/mock/alp", channelMock.AlpHandle)
-	http.HandleFunc("/mock/wxp", channelMock.WxpHandle)
+	http.HandleFunc("/mock/wxp/secapi/pay/refund", channelMock.WxpRefundHandle)
+	http.HandleFunc("/mock/wxp/pay/micropay", channelMock.WxpPayHandle)
 	http.HandleFunc("/mock/mbp", channelMock.MbpHandle)
 	http.HandleFunc("/mock/fyp/micropay", channelMock.FypHandle)
 	if err := http.ListenAndServe(":9900", nil); err != nil {
