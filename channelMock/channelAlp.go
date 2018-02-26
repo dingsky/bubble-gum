@@ -1,6 +1,8 @@
 package channelMock
 
 import (
+	"strconv"
+	"time"
 	"github.com/CardInfoLink/bubble-gum/channelMock/model"
 	"encoding/json"
 	"github.com/CardInfoLink/log"
@@ -20,12 +22,13 @@ type alpQueryResp struct {
 //by sunny
 //定义支付宝退款应答结构体
 type alpRefundResp struct {
-	Resp model.AlpCommonResponse `json:"alipay_trade_refund_response"`
+	Resp model.AlpExceptionResponse `json:"alipay_trade_refund_response"`
 }
 var alpCommonResp_Success = model.AlpCommonResponse{
 	Code:"10000",
 	Msg:"Success",
 	TradeStatus:"TRADE_SUCCESS",
+	TradeNo:strconv.FormatInt(time.Now().Unix(), 10),
 }
 //by sunny
 //定义支付宝回服务器异常的应答
