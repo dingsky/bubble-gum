@@ -16,6 +16,7 @@ func startMock() {
 	flag.Parse()
 
 	http.HandleFunc("/mock/alp", channelMock.AlpHandle)
+	http.HandleFunc("/mock/unionalp", channelMock.UnionAlpHandle)
 	http.HandleFunc("/mock/wxp/secapi/pay/refund", channelMock.WxpRefundHandle)
 	http.HandleFunc("/mock/wxp/pay/micropay", channelMock.WxpPayHandle)
 	http.HandleFunc("/mock/wxp/pay/unifiedorder", channelMock.WxpPrePayHandle)
