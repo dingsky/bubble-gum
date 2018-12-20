@@ -26,8 +26,8 @@ func WxpPayServive(req *model.WxpPayReq) []byte {
 	wxpPayResp :=  &model.WxpPayResp {
 		WxpCommonBody: model.WxpCommonBody {
 			ReturnCode : "SUCCESS" ,
-			ResultCode : "SUCCESS" ,
-			ErrCode : "",
+			ResultCode : "FAIL" ,
+			ErrCode : "SYSTEMERROR",
 		},
 	}
 

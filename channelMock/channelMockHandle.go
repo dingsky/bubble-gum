@@ -169,3 +169,60 @@ func FypHandle(w http.ResponseWriter, r *http.Request) {
 	w.Write(respBytes)
 	return
 }
+
+func UnionWxpRefundHandle(w http.ResponseWriter, r *http.Request) {
+	reqData, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		w.Write([]byte("wxp mock error"))
+		return
+	}
+	defer r.Body.Close()
+	log.Debugf("[rcv req]%s", string(reqData))
+	req := &model.MybankReq {
+	}
+
+	respBytes := UnionWxpRefundServive(req)
+	log.Debugf("[send resp]%+s", respBytes)
+	w.Write(respBytes)
+
+	return
+}
+
+func UnionWxpPayHandle(w http.ResponseWriter, r *http.Request) {
+	reqData, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		w.Write([]byte("wxp mock error"))
+		return
+	}
+	defer r.Body.Close()
+	log.Debugf("[rcv req]%s", string(reqData))
+	req := &model.WxpPayReq {
+	}
+	err = xml.Unmarshal(reqData, req)
+	if err != nil {
+		w.Write([]byte("wxp Unmarshal mock error"))
+		return
+	}
+	respBytes := UnionWxpPayServive(req)
+	log.Debugf("[send resp]%+s", respBytes)
+	w.Write(respBytes)
+
+	return
+}
+
+func UnionWxpRefundQueryHandle(w http.ResponseWriter, r *http.Request) {
+	reqData, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		w.Write([]byte("wxp mock error"))
+		return
+	}
+	defer r.Body.Close()
+	log.Debugf("[rcv req]%s", string(reqData))
+	req := &model.MybankReq {
+	}
+	respBytes := UnionWxpRefundQueryServive(req)
+	log.Debugf("[send resp]%+s", respBytes)
+	w.Write(respBytes)
+
+	return
+}
